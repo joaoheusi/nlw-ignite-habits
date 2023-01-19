@@ -9,6 +9,9 @@ import {
 
 import { Loading } from "./src/components/Loading";
 import { Home } from "./src/screens/Home";
+import * as NavigationBar from "expo-navigation-bar";
+import { Routes } from "./src/routes";
+import "./src/lib/dayjs.ts";
 
 export default function App() {
   const [fontsLoader] = useFonts({
@@ -22,9 +25,11 @@ export default function App() {
     return <Loading />;
   }
 
+  NavigationBar.setBackgroundColorAsync("#09090a");
+
   return (
     <>
-      <Home />
+      <Routes />
       <StatusBar
         barStyle={"light-content"}
         backgroundColor="transparent"
