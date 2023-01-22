@@ -6,8 +6,8 @@ const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
 import { api } from "../lib/axios";
 import { generateDatesFromYearBeginning } from "../utils/generate_dates_from_year_beginning";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useEffect, useState, useCallback } from "react";
 import { Loading } from "../components/Loading";
 import dayjs from "dayjs";
 
@@ -40,9 +40,11 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   if (loading) {
     return <Loading />;
